@@ -12,6 +12,6 @@ install:
   - pipenv sync -d
 script:
   - pipenv run flake8 .
-  - pipenv run pytest --cov=investimento
-after_success:
-  - pipenv run codecov
+#  - pipenv run pytest --cov=investimento
+#after_success:
+#  - pipenv run codecov
