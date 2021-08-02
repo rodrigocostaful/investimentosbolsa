@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:
+  database:
+    container_name: pythonpro_database
+    image: postgres:11.5
+    volumes:
+      - ./.pgdata:/var/lib/postgresql/data
+    environment:
+      - LC_ALL=C.UTF-8
+      - POSTGRES_PASSWORD=ganhandolucros
+      - POSTGRES_USER=ganhandolucros
+    ports:
+      - 5434:5432
