@@ -413,7 +413,7 @@ module.exports = function(XRegExp) {
      * - Adds the `XRegExp.addUnicodeData` method used by other addons to provide character data.
      *
      * Unicode Base relies on externally provided Unicode character data. Official addons are
-     * available to provide data for Unicode categories, scripts, blocks, and properties.
+     * available to provide data for Unicode categories, script, blocks, and properties.
      *
      * @requires XRegExp
      */
@@ -2056,7 +2056,7 @@ module.exports = function(XRegExp) {
      *   programming languages as "white space" for the purpose of parsing elements.
      *
      * The properties ASCII, Any, and Assigned are also included but are not defined in UAX #44. UTS
-     * #18 RL1.2 additionally requires support for Unicode scripts and general categories. These are
+     * #18 RL1.2 additionally requires support for Unicode script and general categories. These are
      * included in XRegExp's Unicode Categories and Unicode Scripts addons.
      *
      * Token names are case insensitive, and any spaces, hyphens, and underscores are ignored.
@@ -2136,7 +2136,7 @@ module.exports = function(XRegExp) {
     'use strict';
 
     /**
-     * Adds support for all Unicode scripts. E.g., `\p{Latin}`. Token names are case insensitive,
+     * Adds support for all Unicode script. E.g., `\p{Latin}`. Token names are case insensitive,
      * and any spaces, hyphens, and underscores are ignored.
      *
      * Uses Unicode 9.0.0.
@@ -2721,7 +2721,7 @@ require('./addons/unicode-base')(XRegExp);
 require('./addons/unicode-blocks')(XRegExp);
 require('./addons/unicode-categories')(XRegExp);
 require('./addons/unicode-properties')(XRegExp);
-require('./addons/unicode-scripts')(XRegExp);
+require('./addons/unicode-script')(XRegExp);
 
 module.exports = XRegExp;
 

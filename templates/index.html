@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>titulo</title>
+
+	<!-- Main Styles -->
+	<link rel="stylesheet" href="{% static 'assets/styles/style.min.css' %}">
+	
+	<!-- Themify Icon -->
+	<link rel="stylesheet" href="{% static 'assets/fonts/themify-icons/themify-icons.css' %}">
+
+	<!-- mCustomScrollbar -->
+	<link rel="stylesheet" href="{% static 'assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css' %}">
+
+	<!-- Waves Effect -->
+	<link rel="stylesheet" href="{% static 'assets/plugin/waves/waves.min.css' %}">
+
+	<!-- Sweet Alert -->
+	<link rel="stylesheet" href="{% static 'assets/plugin/sweet-alert/sweetalert.css' %}">
+
+
+</head>
+
+<body>
+
+{% include 'header.html' %}
+{% include 'navbar.html' %}
+{% include 'notification.html' %}
+
+
+<div id="wrapper">
+	<div class="main-content">
+
+        {% block content %}
+        
+        {% endblock content %}
+
+
+
+        {% include 'footer.html' %}
+	</div>
+	<!-- /.main-content -->
+</div><!--/#wrapper -->
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="{% static 'assets/scripts/html5shiv.min.js' %}"></script>
+		<script src="{% static 'assets/scripts/respond.min.js' %}"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{% static 'assets/scripts/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/scripts/modernizr.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/nprogress/nprogress.js' %}"></script>
+	<script src="{% static 'assets/plugin/sweet-alert/sweetalert.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/waves/waves.min.js' %}"></script>
+	<script src="{% static 'assets/scripts/main.min.js' %}"></script>
+</body>
+</html>
