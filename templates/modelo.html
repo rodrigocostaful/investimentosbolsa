@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>titulo</title>
+
+	<!-- Main Styles -->
+	<link rel="stylesheet" href="{% static 'assets/styles/style.min.css' %}">
+	
+	<!-- Themify Icon -->
+	<link rel="stylesheet" href="{% static 'assets/fonts/themify-icons/themify-icons.css' %}">
+
+	<!-- mCustomScrollbar -->
+	<link rel="stylesheet" href="{% static 'assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css' %}">
+
+	<!-- Waves Effect -->
+	<link rel="stylesheet" href="{% static 'assets/plugin/waves/waves.min.css' %}">
+
+	<!-- Sweet Alert -->
+	<link rel="stylesheet" href="{% static 'assets/plugin/sweet-alert/sweetalert.css' %}">
+
+
+</head>
+
+<body>
+<div class="main-menu">
+	<header class="header">
+		<a href="index.html" class="logo"><i class="ico ti-rocket"></i>Investimento</a>
+		<button type="button" class="button-close fa fa-times js__menu_close"></button>
+	</header>
+	<!-- /.header -->
+	<div class="content">
+
+		<div class="navigation">
+			<h5 class="title">navegação</h5>
+			<!-- /.title -->
+			<ul class="menu js__accordion">
+				<li class="current">
+					<a class="waves-effect" href="index.html"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
+				</li>
+			</ul>
+			<!-- /.menu js__accordion -->
+			<h5 class="title">Controle fluxo</h5>
+			<!-- /.title -->
+			<ul class="menu js__accordion">
+				<li>
+					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-flag"></i><span>Fluxo</span><span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+						<li><a href="#">Add</a></li>
+						<li><a href="#">Listar</a></li>
+					</ul>
+					<!-- /.sub-menu js__content -->
+				</li>
+
+			</ul>
+			<!-- /.menu js__accordion -->
+			<h5 class="title">Análise</h5>
+			<!-- /.title -->
+			<ul class="menu js__accordion">
+				<li>
+					<a class="waves-effect" href="#"><i class="menu-icon ti-user"></i><span>Ações</span></a>
+				</li>
+				<li>
+					<a class="waves-effect" href="#"><i class="menu-icon ti-email"></i><span>Fiis</span><span class="notice notice-danger">New</span></a>
+				</li>
+				<li>
+					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers"></i><span>Etf</span><span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+						<li><a href="#">Br</a></li>
+						<li><a href="#">Us</a></li>
+
+					</ul>
+					<!-- /.sub-menu js__content -->
+				</li>
+				<li>
+					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-blackboard"></i><span>Infomações</span><span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+						<li><a href="#">Contato</a></li>
+						<li><a href="#">Sobre</a></li>
+					</ul>
+					<!-- /.sub-menu js__content -->
+				</li>
+			</ul>
+			<!-- /.menu js__accordion -->
+		</div>
+		<!-- /.navigation -->
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /.main-menu -->
+
+<div class="fixed-navbar">
+	<div class="pull-left">
+		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+		<h1 class="page-title">Dashboard</h1>
+		<!-- /.page-title -->
+	</div>
+	<!-- /.pull-left -->
+	<div class="pull-right">
+		<a href="#" class="ico-item ti-bell notice-alarm js__toggle_open" data-target="#notification-popup"></a>
+		<div class="ico-item">
+			<i class="ti-user"></i>
+			<ul class="sub-ico-item">
+				<li><a href="#">Configurações</a></li>
+				<li><a href="#">Meu perfil</a></li>
+				<li><a class="js__logout" href="#">Sair</a></li>
+			</ul>
+			<!-- /.sub-ico-item -->
+		</div>
+	</div>
+	<!-- /.pull-right -->
+</div>
+<!-- /.fixed-navbar -->
+
+<div id="notification-popup" class="notice-popup js__toggle" data-space="75">
+	<h2 class="popup-title">Suas notificações</h2>
+	<!-- /.popup-title -->
+	<div class="content">
+		<ul class="notice-list">
+			<li>
+				<a href="#">
+					<span class="name">Dividendo</span>
+					<span class="desc">Você recebeu dividendo do ativo MRVE3</span>
+					<span class="time">Total recebido R$ 200</span>
+				</a>
+			</li>
+            <li>
+				<a href="#">
+					<span class="name">Juro sobre capital proprio</span>
+					<span class="desc">Você recebeu juro sobre capital proprio do ativo BIDI11</span>
+					<span class="time">Total recebido R$ 100</span>
+				</a>
+			</li>
+
+		</ul>
+		<!-- /.notice-list -->
+		<a href="#" class="notice-read-more">Veja mais <i class="fa fa-angle-down"></i></a>
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /#notification-popup -->
+
+<div id="wrapper">
+	<div class="main-content">
+		<div class="row small-spacing">
+
+			<div class="col-lg-3 col-xs-12">
+				<div class="box-content">
+					<div class="statistics-box with-icon">
+						<i class="ico ti-bar-chart-alt text-inverse"></i>
+						<h2 class="counter text-inverse">14.400,00</h2>
+						<p class="text">SALDO BRUTO</p>
+					</div>
+					<!-- .statistics-box .with-icon -->
+				</div>
+				<!-- /.box-content -->
+
+				<div class="box-content">
+					<div class="statistics-box with-icon">
+						<i class="ico ti-android text-success"></i>
+						<h2 class="counter text-success">11.000,00</h2>
+						<p class="text">VALOR APLICADO</p>
+					</div>
+					<!-- .statistics-box .with-icon -->
+				</div>
+				<!-- /.box-content -->
+
+				<div class="box-content">
+					<div class="statistics-box with-icon">
+						<i class="ico ti-user text-primary"></i>
+						<h2 class="counter text-primary">38,34%</h2>
+						<p class="text">RENTABILIDADE</p>
+					</div>
+					<!-- .statistics-box .with-icon -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-3 col-xs-12 -->
+
+			<div class="col-lg-9 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Patrimônio mês a mês</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div id="svg-animation-chartist-chart" class="chartist-chart" style="height: 314px"></div>
+					<!-- /#svg-animation-chartist-chart.chartist-chart -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-9 col-xs-12 -->
+
+		</div>
+		<!-- /.row small-spacing -->
+
+		<div class="row small-spacing">
+
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title text-info">Site Traffic</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="content widget-stat">
+						<div id="traffic-sparkline-chart-1" class="left-content margin-top-15"></div>
+						<!-- /#traffic-sparkline-chart-1 -->
+						<div class="right-content">
+							<h2 class="counter text-info">278</h2>
+							<!-- /.counter -->
+							<p class="text text-info">Visitors Income</p>
+							<!-- /.text -->
+						</div>
+						<!-- .right-content -->
+					</div>
+					<!-- /.content widget-stat -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title text-success">Trade Traffic</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="content widget-stat">
+						<div id="traffic-sparkline-chart-2" class="left-content margin-top-10"></div>
+						<!-- /#traffic-sparkline-chart-2 -->
+						<div class="right-content">
+							<h2 class="counter text-success">36%</h2>
+							<!-- /.counter -->
+							<p class="text text-success">Total Income</p>
+							<!-- /.text -->
+						</div>
+						<!-- .right-content -->
+					</div>
+					<!-- /.content widget-stat -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title text-success">Sales Traffic</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="content widget-stat">
+						<div id="traffic-sparkline-chart-3" class="left-content"></div>
+						<!-- /#traffic-sparkline-chart-3 -->
+						<div class="right-content">
+							<h2 class="counter text-danger">849 <i class="fa fa-usd"></i></h2>
+							<!-- /.counter -->
+							<p class="text text-danger">Credit Earned</p>
+							<!-- /.text -->
+						</div>
+						<!-- .right-content -->
+					</div>
+					<!-- /.content widget-stat -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+		</div>
+		<!-- /.row small-spacing -->
+
+		<div class="row small-spacing">
+			<div class="col-lg-4 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Activity</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<div class="activity-list">
+						<div class="activity-item">
+							<div class="bar bg-primary">
+								<div class="dot bg-primary"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">10 min</div>
+								<!-- /.date -->
+								<div class="text">
+									Harry has finished "Amaza HTML" task
+								</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-danger">
+								<div class="dot bg-danger"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">15 min</div>
+								<!-- /.date -->
+								<div class="text">
+									You completed your task
+								</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-success">
+								<div class="dot bg-success"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">30 min</div>
+								<!-- /.date -->
+								<div class="text">
+									New updated has been installed
+								</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-violet">
+								<div class="dot bg-violet"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">1 hour ago</div>
+								<!-- /.date -->
+								<div class="text">Write some comments</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-warning">
+								<div class="dot bg-warning"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">1 day ago</div>
+								<!-- /.date -->
+								<div class="text">4 friends request accepted</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+						<div class="activity-item">
+							<div class="bar bg-orange">
+								<div class="dot bg-orange"></div>
+								<div class="last-dot bg-orange"></div>
+								<!-- /.dot -->
+							</div>
+							<!-- /.bar -->
+							<div class="content">
+								<div class="date">12 days ago</div>
+								<!-- /.date -->
+								<div class="text">Daisy has joined your team</div>
+								<!-- /.text -->
+							</div>
+							<!-- /.content -->
+						</div>
+						<!-- /.activity-item -->
+					</div>
+					<!-- /.activity-list -->
+					<a href="#" class="activity-link">View all activity <i class="fa fa-angle-down"></i></a>
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-4 col-xs-12 -->
+
+			<div class="col-lg-8 col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Purchases</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Product</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else there</a></li>
+							<li class="split"></li>
+							<li><a href="#">Separated link</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<table class="table table-striped margin-bottom-10">
+						<thead>
+							<tr>
+								<th style="width:40%;">Product</th>
+								<th>Price</th>
+								<th>Date</th>
+								<th>State</th>
+								<th style="width:5%;"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Amaza Themes</td>
+								<td>$71</td>
+								<td>Nov 12,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Macbook</td>
+								<td>$142</td>
+								<td>Nov 10,2016</td>
+								<td class="text-danger">Cancelled</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Samsung TV</td>
+								<td>$200</td>
+								<td>Nov 01,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Ninja Admin</td>
+								<td>$200</td>
+								<td>Oct 28,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Galaxy Note 5</td>
+								<td>$200</td>
+								<td>Oct 28,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>CleanUp Themes</td>
+								<td>$71</td>
+								<td>Oct 22,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Facebook WP Plugin</td>
+								<td>$10</td>
+								<td>Oct 15,2016</td>
+								<td class="text-success">Completed</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Iphone 7</td>
+								<td>$100</td>
+								<td>Oct 12,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Nova House</td>
+								<td>$100</td>
+								<td>Oct 12,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							<tr>
+								<td>Repair Cars</td>
+								<td>$35</td>
+								<td>Oct 12,2016</td>
+								<td class="text-warning">Pending</td>
+								<td><a href="#"><i class="fa fa-plus-circle"></i></a></td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<!-- /.table -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-lg-6 col-xs-12 -->
+		</div>
+		<!-- /.row -->		
+		<footer class="footer">
+			<ul class="list-inline">
+				<li>2016 © NinjaAdmin.</li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+				<li><a href="#">Help</a></li>
+			</ul>
+		</footer>
+	</div>
+	<!-- /.main-content -->
+</div><!--/#wrapper -->
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="{% static 'assets/scripts/html5shiv.min.js' %}"></script>
+		<script src="{% static 'assets/scripts/respond.min.js' %}"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{% static 'assets/scripts/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/scripts/modernizr.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/nprogress/nprogress.js' %}"></script>
+	<script src="{% static 'assets/plugin/sweet-alert/sweetalert.min.js' %}"></script>
+	<script src="{% static 'assets/plugin/waves/waves.min.js' %}"></script>
+
+
+
+	<script src="{% static 'assets/scripts/main.min.js' %}"></script>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
