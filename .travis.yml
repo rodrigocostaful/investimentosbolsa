@@ -26,7 +26,3 @@ before_script:
 
 script:
   - pipenv run flake8 .
-  - pipenv run pytest --cov=investimento
-
-after_success:
-  - pipenv run codecov
