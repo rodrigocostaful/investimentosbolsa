@@ -3,11 +3,11 @@
 
 	// Date Picker
 
-	if ($("#datepicker-autoclose").length)
-		$('#datepicker-autoclose').datepicker({
+	if ($("#datepicker").length)
+		$('#datepicker').datepicker({
 			autoclose: true,
 			todayHighlight: true,
-			format: "mm/dd/yyyy",
+			format: "dd/mm/yyyy",
 			language: 'pt-BR'
 		});
 
