@@ -1,6 +1,7 @@
+{% load static %}
 <div class="main-menu">
 	<header class="header">
-		<a href="#" class="logo"><i class="ico ti-rocket"></i>Investimento</a>
+		<a href="{% url 'investimento.core:dashboard' %}" class="logo"><i class="ico ti-rocket"></i>Investimento</a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
@@ -12,7 +13,7 @@
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li class="current">
-					<a class="waves-effect" href="index.html"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
+					<a class="waves-effect" href="{% url 'investimento.core:dashboard' %}"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
 				</li>
 			</ul>
 			<!-- /.menu js__accordion -->
@@ -20,12 +21,7 @@
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li>
-					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-flag"></i><span>Fluxo</span><span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
-						<li><a href="#">Add</a></li>
-						<li><a href="#">Listar</a></li>
-					</ul>
-					<!-- /.sub-menu js__content -->
+					<a class="waves-effect" href="{% url 'investimento.fluxo:listar_fluxo' %}"><i class="menu-icon ti-dashboard"></i><span>Fluxo</span></a>
 				</li>
 
 			</ul>

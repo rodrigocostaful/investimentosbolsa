@@ -1,9 +1,9 @@
 from django.urls import path
 
-from investimento.core.views import home
+from investimento.core.views import dashboard
 
 app_name = 'investimento.core'
 urlpatterns = [
-    path('', home),
+    path('', dashboard, name='dashboard'),
 
 ]
