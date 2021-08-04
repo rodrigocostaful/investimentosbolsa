@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'collectfast',
     'django.contrib.staticfiles',
     'investimento.core',
+    'investimento.fluxo',
 
 ]
 
@@ -170,7 +171,7 @@ if AWS_ACCESS_KEY_ID:
     COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
     COLLECTFAST_ENABLED = True
 
-    AWS_DEFAULT_ACL = 'private'
+    AWS_DEFAULT_ACL = ''
 
     # Static Assets
     # ------------------------------------------------------------------------------
