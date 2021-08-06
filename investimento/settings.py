@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'collectfast',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'investimento.core',
     'investimento.fluxo',
 

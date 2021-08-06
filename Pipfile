@@ -18,6 +18,9 @@ django-ordered-model = "*"
 django-extensions = "*"
 pytest-django = "*"
 pytest-cov = "*"
+django-widget-tweaks = "*"
+pip = "*"
+install = "*"
 
 [dev-packages]
 "flake8" = "*"
