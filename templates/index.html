@@ -59,25 +59,26 @@
 {% block modal %}
 
 {% endblock %}
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
 		<script src="{% static 'assets/scripts/html5shiv.min.js' %}"></script>
 		<script src="{% static 'assets/scripts/respond.min.js' %}"></script>
 	<![endif]-->
-	<!-- 
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="{% static 'assets/scripts/jquery.min.js' %}"></script>
-	<script src="{% static 'assets/scripts/modernizr.min.js' %}"></script>
-	<script src="{% static 'assets/plugin/bootstrap/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-	<script src="{% static 'assets/plugin/nprogress/nprogress.js' %}"></script>
-	<script src="{% static 'assets/plugin/sweet-alert/sweetalert.min.js' %}"></script>
-	<script src="{% static 'assets/plugin/waves/waves.min.js' %}"></script>
-    {% block script_customizado %}
+<!--
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'assets/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'assets/plugin/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/scripts/modernizr.min.js' %}"></script>
 
-    {% endblock script_customizado %}
-	<script src="{% static 'assets/scripts/main.min.js' %}"></script>
+<script src="{% static 'assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'assets/plugin/nprogress/nprogress.js' %}"></script>
+<script src="{% static 'assets/plugin/sweet-alert/sweetalert.min.js' %}"></script>
+<script src="{% static 'assets/plugin/waves/waves.min.js' %}"></script>
+{% block script_customizado %}
+
+{% endblock script_customizado %}
+<script src="{% static 'assets/scripts/main.min.js' %}"></script>
 
 </body>
 </html>
