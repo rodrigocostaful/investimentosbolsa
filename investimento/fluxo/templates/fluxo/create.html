@@ -1,0 +1,174 @@
+{% extends "index.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block css_customizado %}
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="{% static 'assets/plugin/datatables/media/css/dataTables.bootstrap.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'assets/plugin/datatables/extensions/Responsive/css/responsive.bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugin/datepicker/css/bootstrap-datepicker.min.css' %}">
+    <!-- Chartist Chart -->
+    <link rel="stylesheet" href="{% static 'assets/plugin/chart/chartist/chartist.min.css' %}">
+{% endblock css_customizado %}
+{% block content %}
+    <div class="box-content">
+        <div class="margin-bottom-100">
+            <h4 class="">{{ title }}</h4>
+            <button type="button" class="btn btn-primary btn-bordered pull-right " data-toggle="modal"
+                    data-target="#modalCadastrFluxo"><i class="ico ico-left fa fa-plus-circle"></i>Novo Fluxo
+            </button>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-lg-3 col-sm-12">
+                <div class="box-content">
+                    <div class="statistics-box with-icon">
+                        <i class="ico fa fa-money text-inverse"></i>
+                        <h2 class="counter text-inverse">20.400,00</h2>
+                        <p class="text">SALDO ATUAL</p>
+                    </div>
+                    <!-- .statistics-box .with-icon -->
+                </div>
+                <!-- /.box-content -->
+
+                <div class="box-content">
+                    <div class="statistics-box with-icon">
+                        <i class="ico fa fa-sign-in  text-success"></i>
+                        <h2 class="counter text-success">11.000,00</h2>
+                        <p class="text">TOTAL DE ENTRADAS</p>
+                    </div>
+                    <!-- .statistics-box .with-icon -->
+                </div>
+                <!-- /.box-content -->
+
+                <div class="box-content">
+                    <div class="statistics-box with-icon">
+                        <i class="ico fa fa-sign-out text-primary"></i>
+                        <h2 class="counter text-primary">2.000,00</h2>
+                        <p class="text">TOTAL DE SAÍDAS</p>
+                    </div>
+                    <!-- .statistics-box .with-icon -->
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-3 col-xs-12 -->
+            <div class="col-lg-9 col-md-12">
+                <div class="box-content">
+                    <h4 class="box-title">Fluxo mensal</h4>
+
+                    <div id="svg-animation-chartist-chart" class="chartist-chart" style="height: 320px"></div>
+                    <!-- /#svg-animation-chartist-chart.chartist-chart -->
+                </div>
+                <!-- /.box-content -->
+            </div>
+            <!-- /.col-lg-6 col-md-12 -->
+
+
+        </div>
+        <!-- /.box-content -->
+    </div>
+    <!-- /.col-xs-12 -->
+    <div class="col-xl-12">
+        <div class="box-content">
+            <h4 class="box-title">Histórico de fluxo</h4>
+
+            <table id="fluxo_tabela" class="table table-striped table-bordered display text-center" style="width:100%">
+                <thead>
+                <tr>
+                    <th scope="col" class="text-center" style="width: 20%;">Data</th>
+                    <th scope="col" class="text-center" style="width: 20%;">Tipo</th>
+                    <th scope="col" class="text-center" style="width: 20%;">Corretora</th>
+                    <th scope="col" class="text-center" style="width: 25%;">Valor</th>
+                    <th scope="col" class="text-center" style="width: 15%;">Opções</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for c in object_list %}
+                    <tr>
+                        <td>{{ c.data }}</td>
+                        <td>{{ c.get_tipo_fluxo_display }}</td>
+                        <td>{{ c.corretora }}</td>
+                        <td>{{ c.valor }}</td>
+                        <td>
+
+                            <button type="button" class="btn btn-warning btn-xs btn-bordered">
+                                <i class=" ti-pencil-alt"></i>
+                            </button>
+                            <a href="">
+                                <button type="button" class="btn btn-danger btn-xs btn-bordered">
+
+                                    <i class=" ti-trash"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block modal %}
+    <div class="modal fade" id="modalCadastrFluxo" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+             <form method="post">
+              {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cadastro de fluxo</h4>
+                </div>
+                <div class="modal-body">
+
+                        <div class="card-content">
+                            <div class="form-horizontal">
+
+                                {% for field in form %}
+                                    <div class="form-group{% if field.errors %} has-error{% endif %}">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                        {% render_field field class="form-control" %}
+                                        {% for error in field.errors %}
+                                            <p class="help-block">{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-sm  btn-bordered" data-dismiss="modal">
+                                Fechar
+                            </button>
+                            <button type="submit" class="btn btn-primary js-create-book btn-sm btn-bordered  js-create-book">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock modal %}
+
+{% block script_customizado %}
+    <!-- Data Tables -->
+    <script src="{% static 'assets/plugin/datatables/media/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/plugin/datatables/media/js/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/plugin/datatables/extensions/Responsive/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'assets/plugin/datatables/extensions/Responsive/js/responsive.bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/scripts/datatables.demo.min.js' %}"></script>
+
+    <!-- DateRangepicker -->
+    <script src="{% static 'assets/plugin/datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/plugin/datepicker/js/bootstrap-datepicker.pt-BR.min.js' %}"></script>
+    <script src="{% static 'assets/scripts/form.demo.js' %}"></script>
+    <script src="{% static 'scripts.js' %}"></script>
+    <!-- Chartist Chart -->
+    <script src="{% static 'assets/plugin/chart/chartist/chartist.min.js' %}"></script>
+    <script src="{% static 'assets/scripts/jquery.chartist.init.min.js' %}"></script>
+    <script>
+
+
+    </script>
+
+{% endblock script_customizado %}
