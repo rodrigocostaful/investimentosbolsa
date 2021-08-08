@@ -1,52 +1,17 @@
-from django.shortcuts import render
-from django.views.generic import ListView,DeleteView, CreateView
+from django.views.generic import ListView,CreateView,DeleteView,UpdateView,TemplateView
+from django.template.loader import render_to_string
+from django.urls import reverse_lazy
+
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.urls import reverse_lazy
+from django.views.generic import ListView
 
 from investimento.fluxo.forms import FluxoForm
 from investimento.fluxo.models import Fluxo
+from django.http import JsonResponse
 
 
-# Create your views here.
-class FluxoCreateView(CreateView,ListView):
-    model = Fluxo
-    form_class = FluxoForm
-    template_name = 'fluxo/listar.html'
-    success_url = reverse_lazy('investimento.fluxo:fluxo-list')
-
-    @method_decorator(csrf_exempt)
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'searchdata':
-                data = []
-                for i in Fluxo.objects.all():
-                    data.append(i.toJSON())
-            elif action == 'add':
-                flx = Fluxo()
-                flx.data = request.POST['data']
-                flx.tipo = request.POST['tipo']
-                flx.corretora = request.POST['corretora']
-                flx.valor = request.POST['valor']
-                flx.save()
-            else:
-                data['error'] = 'Ocorreu umerro'
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = FluxoForm()
-        return context
-
-
-
-class FluxoListViews(ListView,CreateView):
-    model = Fluxo
+class ClientView(TemplateView):
     template_name = 'fluxo/listar.html'
 
     @method_decorator(csrf_exempt)
@@ -59,12 +24,27 @@ class FluxoListViews(ListView,CreateView):
             action = request.POST['action']
             if action == 'searchdata':
                 data = []
-                position = 1
                 for i in Fluxo.objects.all():
-                    item = i.toJSON()
-                    item['position'] = position
-                    data.append(item)
-                    position += 1
+                    data.append(i.toJSON())
+            elif action == 'add':
+                cli = Fluxo()
+                cli.data = request.POST['data']
+                cli.tipo_fluxo = request.POST['tipo']
+                cli.corretora = request.POST['corretora']
+                cli.valor = request.POST['valor']
+                cli.save()
+            elif action == 'edit':
+                cli = Fluxo.objects.get(pk=request.POST['id'])
+                cli.names = request.POST['names']
+                cli.surnames = request.POST['surnames']
+                cli.dni = request.POST['dni']
+                cli.date_birthday = request.POST['date_birthday']
+                cli.address = request.POST['address']
+                cli.gender = request.POST['gender']
+                cli.save()
+            elif action == 'delete':
+                cli = Fluxo.objects.get(pk=request.POST['id'])
+                cli.delete()
             else:
                 data['error'] = 'Ha ocurrido un error'
         except Exception as e:
@@ -73,13 +53,8 @@ class FluxoListViews(ListView,CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Controle de fluxo'
-        context['title_conteudo'] = 'Fluxo de caixa'
-        context['list_url'] = reverse_lazy('website:fluxo-list')
-        context['breadcrumb'] = 'Fluxo'
-
+        context['title'] = 'Listado de Clientes'
+        context['list_url'] = reverse_lazy('investimento.fluxo:client')
+        context['entity'] = 'Clientes'
+        context['form'] = FluxoForm()
         return context
-class FluxoDeleteViews(DeleteView):
-    model = Fluxo
-    success_url = reverse_lazy('investimento.fluxo:fluxo-list')
-    template_name = 'fluxo  /listar.html'
