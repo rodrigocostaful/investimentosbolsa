@@ -1,11 +1,18 @@
 from django.urls import path
 
-from investimento.fluxo.views import  FluxoListViews
+from investimento.fluxo.views import ClientView
 
 app_name = 'investimento.fluxo'
 
 
+
+from investimento.fluxo.models import Fluxo
+
 urlpatterns = [
-    path('fluxo/', FluxoListViews.as_view(), name='fluxo-list'),
+
+
+    #
+    path('fluxo/list/', ClientView.as_view(), name='client'),
+    #
 
 ]
