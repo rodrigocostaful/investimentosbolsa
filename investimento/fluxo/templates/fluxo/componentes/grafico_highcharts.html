@@ -1,0 +1,59 @@
+<figure class="highcharts-figure">
+    <div id="Fluxo_graficohighcharts"></div>
+
+</figure>
+
+<script>
+    Highcharts.chart('Fluxo_graficohighcharts', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Fluxo média mensal'
+    },
+    subtitle: {
+        text: 'Entradas e saídas '
+    },
+    xAxis: {
+        categories: [
+            'JAN',
+            'FEV',
+            'MAR',
+            'ABR',
+            'MAI',
+            'JUN',
+            'JUL',
+            'AGO',
+            'SET',
+            'OUT',
+            'NOV',
+            'DEZ'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Total (R$)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.2f} R$</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series:
+
+        {{ grafico_highcharts|safe }}
+
+});
+</script>

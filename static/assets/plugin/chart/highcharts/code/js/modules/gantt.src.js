@@ -76,7 +76,7 @@
                         // There was an axis on the same side with a
                         // higher index. Exit the loop.
                         isOuter = false;
-                        return;
+
                     }
                 }
             });

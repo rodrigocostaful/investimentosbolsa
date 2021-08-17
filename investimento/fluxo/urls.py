@@ -12,7 +12,7 @@ urlpatterns = [
 
 
     #
-    path('fluxo/list/', ClientView.as_view(), name='client'),
+    path('fluxo/list/', ClientView.as_view(), name='list_fluxo'),
     #
 
 ]

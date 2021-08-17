@@ -30,7 +30,7 @@ class Fluxo(models.Model):
     updated_at = models.DateTimeField(auto_now=True,db_index=True)
 
     def __str__(self):
-        return "{} valor".format(self.valor)
+        return self.get_tipo_fluxo_display()
 
     def toJSON(self):
         item = model_to_dict(self)

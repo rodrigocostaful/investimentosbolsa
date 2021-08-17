@@ -5268,7 +5268,7 @@ function _normalizeEncoding(enc) {
         retried = true;
     }
   }
-};
+}
 
 // Do not cache `Buffer.isEncoding` when checking encoding names as some
 // modules monkey-patch it to support additional encodings
@@ -17528,7 +17528,7 @@ By Devon Govett
       for (key in ref1) {
         val = ref1[key];
         if (typeof val === 'string') {
-          val = new String(val);
+          val = String(val);
         }
         this._info.data[key] = val;
       }
@@ -23622,7 +23622,7 @@ module.exports = function inflate_fast(strm, start) {
           }
           else if ((op & 64) === 0) {          /* 2nd level distance code */
             here = dcode[(here & 0xffff)/*here.val*/ + (hold & ((1 << op) - 1))];
-            continue dodist;
+            continue;
           }
           else {
             strm.msg = 'invalid distance code';
@@ -23635,7 +23635,7 @@ module.exports = function inflate_fast(strm, start) {
       }
       else if ((op & 64) === 0) {              /* 2nd level length code */
         here = lcode[(here & 0xffff)/*here.val*/ + (hold & ((1 << op) - 1))];
-        continue dolen;
+        continue;
       }
       else if (op & 32) {                     /* end-of-block */
         //Tracevv((stderr, "inflate:         end of block\n"));
@@ -23665,7 +23665,7 @@ module.exports = function inflate_fast(strm, start) {
   strm.avail_out = (_out < end ? 257 + (end - _out) : 257 - (_out - end));
   state.hold = hold;
   state.bits = bits;
-  return;
+
 };
 
 
@@ -25648,7 +25648,7 @@ fontkit.open = function (filename, postscriptName, callback) {
     return callback(null, font);
   });
 
-  return;
+
 };
 
 fontkit.create = function (buffer, postscriptName) {
@@ -25699,7 +25699,7 @@ function cache(target, key, descriptor) {
           var result = fn.apply(this, args);
           cache.set(key, result);
           return result;
-        };
+        }
 
         _Object$defineProperty(this, key, { value: memoized });
         return memoized;
@@ -26533,7 +26533,7 @@ var CFFIndex = function () {
       type.encode(stream, _item, parent);
     }
 
-    return;
+
   };
 
   return CFFIndex;
@@ -26911,7 +26911,7 @@ var CFFDict = function () {
       ptr.type.encode(stream, ptr.val, ptr.parent);
     }
 
-    return;
+
   };
 
   return CFFDict;
@@ -30031,7 +30031,7 @@ var UnicodeLayoutEngine = function () {
       }
     }
 
-    return;
+
   };
 
   UnicodeLayoutEngine.prototype.getCombiningClass = function getCombiningClass(codePoint) {
@@ -37004,7 +37004,7 @@ var TTFGlyph = function (_Glyph) {
       glyph.phantomPoints = points.slice(-4);
     }
 
-    return;
+
   };
 
   TTFGlyph.prototype._decodeComposite = function _decodeComposite(glyph, stream) {
@@ -38018,7 +38018,7 @@ var COLRGlyph = function (_Glyph) {
       glyph.render(ctx, size);
     }
 
-    return;
+
   };
 
   _createClass(COLRGlyph, [{
@@ -39051,7 +39051,7 @@ var CFFSubset = function (_Subset) {
       }
     }
 
-    return;
+
   };
 
   CFFSubset.prototype.createCIDFontdict = function createCIDFontdict(topDict) {
@@ -41192,7 +41192,7 @@ exports.utf7 = Utf7Codec;
 exports.unicode11utf7 = 'utf7'; // Alias UNICODE-1-1-UTF-7
 function Utf7Codec(codecOptions, iconv) {
     this.iconv = iconv;
-};
+}
 
 Utf7Codec.prototype.encoder = Utf7Encoder;
 Utf7Codec.prototype.decoder = Utf7Decoder;
@@ -41316,7 +41316,7 @@ Utf7Decoder.prototype.end = function() {
 exports.utf7imap = Utf7IMAPCodec;
 function Utf7IMAPCodec(codecOptions, iconv) {
     this.iconv = iconv;
-};
+}
 
 Utf7IMAPCodec.prototype.encoder = Utf7IMAPEncoder;
 Utf7IMAPCodec.prototype.decoder = Utf7IMAPDecoder;
@@ -45199,7 +45199,7 @@ exports = module.exports = supportsArgumentsClass ? supported : unsupported;
 exports.supported = supported;
 function supported(object) {
   return Object.prototype.toString.call(object) == '[object Arguments]';
-};
+}
 
 exports.unsupported = unsupported;
 function unsupported(object){
@@ -45209,7 +45209,7 @@ function unsupported(object){
     Object.prototype.hasOwnProperty.call(object, 'callee') &&
     !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
     false;
-};
+}
 
 
 /***/ }),
@@ -46895,22 +46895,22 @@ clone.clonePrototype = function clonePrototype(parent) {
 
 function __objToStr(o) {
   return Object.prototype.toString.call(o);
-};
+}
 clone.__objToStr = __objToStr;
 
 function __isDate(o) {
   return typeof o === 'object' && __objToStr(o) === '[object Date]';
-};
+}
 clone.__isDate = __isDate;
 
 function __isArray(o) {
   return typeof o === 'object' && __objToStr(o) === '[object Array]';
-};
+}
 clone.__isArray = __isArray;
 
 function __isRegExp(o) {
   return typeof o === 'object' && __objToStr(o) === '[object RegExp]';
-};
+}
 clone.__isRegExp = __isRegExp;
 
 function __getRegExpFlags(re) {
@@ -46919,7 +46919,7 @@ function __getRegExpFlags(re) {
   if (re.ignoreCase) flags += 'i';
   if (re.multiline) flags += 'm';
   return flags;
-};
+}
 clone.__getRegExpFlags = __getRegExpFlags;
 
 return clone;
@@ -47011,7 +47011,7 @@ BrotliBitReader.prototype.reset = function() {
 */
 BrotliBitReader.prototype.readMoreInput = function() {
   if (this.bit_end_pos_ > 256) {
-    return;
+
   } else if (this.eos_) {
     if (this.bit_pos_ > this.bit_end_pos_)
       throw new Error('Unexpected end of input ' + this.bit_pos_ + ' ' + this.bit_end_pos_);
@@ -48275,8 +48275,8 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
         Subtype: isCFF ? 'CIDFontType0' : 'CIDFontType2',
         BaseFont: name,
         CIDSystemInfo: {
-          Registry: new String('Adobe'),
-          Ordering: new String('Identity'),
+          Registry: String('Adobe'),
+          Ordering: String('Identity'),
           Supplement: 0
         },
         FontDescriptor: descriptor,
@@ -49659,7 +49659,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
           throw new Error("Incomplete or corrupt PNG file");
         }
       }
-      return;
+
     }
 
     PNG.prototype.read = function(bytes) {
@@ -49856,7 +49856,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
       }
       delete options.color;
       if (typeof options.Dest === 'string') {
-        options.Dest = new String(options.Dest);
+        options.Dest = String(options.Dest);
       }
       for (key in options) {
         val = options[key];
@@ -49872,7 +49872,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
         options = {};
       }
       options.Subtype = 'Text';
-      options.Contents = new String(contents);
+      options.Contents = String(contents);
       options.Name = 'Comment';
       if (options.color == null) {
         options.color = [243, 223, 92];
@@ -49886,7 +49886,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
       options.Subtype = 'Link';
       options.A = this.ref({
         S: 'URI',
-        URI: new String(url)
+        URI: String(url)
       });
       options.A.end();
       return this.annotate(x, y, w, h, options);
@@ -49898,7 +49898,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
       }
       ref1 = this._convertRect(x, y, w, h), x1 = ref1[0], y1 = ref1[1], x2 = ref1[2], y2 = ref1[3];
       options.QuadPoints = [x1, y2, x2, y2, x1, y1, x2, y1];
-      options.Contents = new String;
+      options.Contents = String;
       return this.annotate(x, y, w, h, options);
     },
     highlight: function(x, y, w, h, options) {
@@ -49930,7 +49930,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
         options = {};
       }
       options.Subtype = 'Line';
-      options.Contents = new String;
+      options.Contents = String;
       options.L = [x1, this.page.height - y1, x2, this.page.height - y2];
       return this.annotate(x1, y1, x2, y2, options);
     },
@@ -49939,7 +49939,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
         options = {};
       }
       options.Subtype = 'Square';
-      options.Contents = new String;
+      options.Contents = String;
       return this.annotate(x, y, w, h, options);
     },
     ellipseAnnotation: function(x, y, w, h, options) {
@@ -49947,7 +49947,7 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
         options = {};
       }
       options.Subtype = 'Circle';
-      options.Contents = new String;
+      options.Contents = String;
       return this.annotate(x, y, w, h, options);
     },
     textAnnotation: function(x, y, w, h, text, options) {
@@ -49955,8 +49955,8 @@ exports.transformDictionaryWord = function(dst, idx, word, len, transform) {
         options = {};
       }
       options.Subtype = 'FreeText';
-      options.Contents = new String(text);
-      options.DA = new String;
+      options.Contents = String(text);
+      options.DA = String;
       return this.annotate(x, y, w, h, options);
     },
     _convertRect: function(x1, y1, w, h) {
