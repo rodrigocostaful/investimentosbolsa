@@ -1,14 +1,15 @@
-from django.views.generic import ListView,CreateView,DeleteView,UpdateView,TemplateView
-from django.template.loader import render_to_string
+from datetime import datetime
+from django.db.models import FloatField, DecimalField
+from django.db.models import Sum, Value as V
+from django.db.models.functions import Coalesce
+from django.http import JsonResponse
 from django.urls import reverse_lazy
-
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView
+from django.views.generic import TemplateView
 
 from investimento.fluxo.forms import FluxoForm
 from investimento.fluxo.models import Fluxo
-from django.http import JsonResponse
 
 
 class ClientView(TemplateView):
@@ -22,10 +23,8 @@ class ClientView(TemplateView):
         data = {}
         try:
             action = request.POST['action']
-            if action == 'searchdata':
-                data = []
-                for i in Fluxo.objects.all():
-                    data.append(i.toJSON())
+            if action == 'fluxo_lista_tabela':
+                data = [i.toJSON() for i in Fluxo.objects.all()]
             elif action == 'add':
                 cli = Fluxo()
                 cli.data = request.POST['data']
@@ -46,15 +45,37 @@ class ClientView(TemplateView):
                 cli = Fluxo.objects.get(pk=request.POST['id'])
                 cli.delete()
             else:
-                data['error'] = 'Ha ocurrido un error'
+                data['error'] = 'há um erro     '
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data, safe=False)
 
+    def grafico_highcharts(self):
+        data_en = []
+        data_sd = []
+        year = datetime.now().year
+
+        for m in range(1, 13):
+            for m in range(1, 13):
+                # total_en = Fluxo.objects.filter(tipo_fluxo='en', data__year=year, data__month=m).aggregate(Sum('valor', 0)))
+                total_en = Fluxo.objects.filter(tipo_fluxo='en',data__year=year, data__month=m).aggregate(r=Coalesce(Sum('valor'), 0, output_field=FloatField())).get('r')
+                total_sd = Fluxo.objects.filter(tipo_fluxo='sd',data__year=year, data__month=m).aggregate(r=Coalesce(Sum('valor'), 0, output_field=FloatField())).get('r')
+                data_en.append(float(total_en))
+                data_sd.append(float(total_sd))
+            return [{'name':'Entrada', 'data': data_en},{'name':'Saída', 'data': data_sd}]
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de Clientes'
+        context['title'] = 'Lista de fluxo'
         context['list_url'] = reverse_lazy('investimento.fluxo:client')
-        context['entity'] = 'Clientes'
+        context['entity'] = 'Fluxos'
         context['form'] = FluxoForm()
+        context['entradas'] = Fluxo.objects.filter(tipo_fluxo='en').aggregate(r=Coalesce(Sum('valor'), 0, output_field=FloatField())).get('r')
+        context['saida'] = Fluxo.objects.filter(tipo_fluxo='sd').aggregate(r=Coalesce(Sum('valor'), 0, output_field=FloatField())).get('r')
+        context['total_fluxo'] = Fluxo.objects.filter(tipo_fluxo='en').aggregate(r=Coalesce(Sum('valor'), 0, output_field=FloatField())).get('r')-Fluxo.objects.filter(tipo_fluxo='sd').aggregate(r=Coalesce(Sum('valor'), 0, output_field=FloatField())).get('r')
+
+
+        context['grafico_highcharts'] = self.grafico_highcharts()
+
         return context

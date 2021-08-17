@@ -10,7 +10,7 @@ function getData() {
             url: window.location.pathname,
             type: 'POST',
             data: {
-                'action': 'searchdata'
+                'action': 'fluxo_lista_tabela'
             },
             dataSrc: ""
         },
@@ -19,15 +19,17 @@ function getData() {
             {"data": "tipo"},
             {"data": "corretora"},
             {"data": "valor"},
+            {"data": ""},
         ],
         columnDefs: [
             {
                 targets: [-1],
+                //adiciona classe na tabela
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {
-                    var buttons = '<a href="#" rel="edit" class="btn btn-warning btn-xs btn-flat btnEdit"><i class="fas fa-edit"></i></a> ';
-                    buttons += '<a href="#" rel="delete" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt"></i></a>';
+                    var buttons = '<a href="#" rel="edit" class="btn btn-warning btn-xs btn-flat"><i class="fa fa-edit"></i></a> ';
+                    buttons += '<a href="#" rel="delete" class="btn btn-danger btn-xs btn-flat"><i class="fa fa-trash"></i></a>';
                     return buttons;
                 }
             },
@@ -55,7 +57,7 @@ $(function () {
 
     $('#data tbody')
         .on('click', 'a[rel="edit"]', function () {
-            modal_title.find('span').html('Edición de un cliente');
+            modal_title.find('span').html('Editar Fluxo');
             modal_title.find('i').removeClass().addClass('fas fa-edit');
             var tr = tblClient.cell($(this).closest('td, li')).index();
             var data = tblClient.row(tr.row).data();

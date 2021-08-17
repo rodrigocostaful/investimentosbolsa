@@ -2,8 +2,58 @@
 {% load widget_tweaks %}
 {% load static %}
 
-{% block content_single %}
+{% block css_include %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 {% endblock %}
+
+{% block content_single %}
+
+    <div class="col-lg-3 col-sm-12">
+        <div class="box-content">
+            <div class="statistics-box with-icon">
+                <i class="ico fa fa-money text-inverse"></i>
+                <h2 class="counter text-inverse">{{ total_fluxo }}</h2>
+                <p class="text">SALDO ATUAL</p>
+            </div>
+            <!-- .statistics-box .with-icon -->
+        </div>
+        <!-- /.box-content -->
+
+        <div class="box-content">
+            <div class="statistics-box with-icon">
+                <i class="ico fa fa-sign-in  text-success"></i>
+                <h2 class="counter text-success">{{ entradas|floatformat:2 }}</h2>
+                <p class="text">TOTAL DE ENTRADAS</p>
+            </div>
+            <!-- .statistics-box .with-icon -->
+        </div>
+        <!-- /.box-content -->
+
+        <div class="box-content">
+            <div class="statistics-box with-icon">
+                <i class="ico fa fa-sign-out text-primary"></i>
+                <h2 class="counter text-primary">{{ saida|floatformat:2 }}</h2>
+                <p class="text">TOTAL DE SAÍDAS</p>
+            </div>
+            <!-- .statistics-box .with-icon -->
+        </div>
+        <!-- /.box-content -->
+    </div>
+    <!-- /.col-lg-3 col-xs-12 -->
+    <div class="col-lg-9 col-md-12">
+        <div class="box-content">
+            {% include 'fluxo/componentes/grafico_highcharts.html' %}
+        </div>
+        <!-- /.box-content -->
+    </div>
+    <!-- /.col-lg-6 col-md-12 -->
+
+
+{% endblock %}
+
 
 {% block columns %}
     <tr>
@@ -16,7 +66,7 @@
 {% endblock %}
 
 {% block modal %}
-    <div class="modal fade" id="modalCadastrFluxo" tabindex="-1" role="dialog">
+    <div class="modal fade btnAdd" id="modalCadastrFluxo" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form method="post">
@@ -59,5 +109,5 @@
 {% endblock modal %}
 
 {% block list_js %}
-    <script src="{% static 'fluxo.js' %}">
+    <script src="{% static 'fluxo/js/fluxo.js' %}"></script>
 {% endblock %}
